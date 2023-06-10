@@ -37,16 +37,13 @@ const Item = mongoose.model("item", itemsSchema);
 
 //create three initial documents
 const item1 = new Item({
-  name: "This is my first post."
+  name: "Welcome to your todolist!"
 });
 const item2 = new Item({
-  name: "This is my second post."
-});
-const item3 = new Item({
-  name: "This is my third post."
+  name: "Input in New Item textbox and hit + to add."
 });
 
-const defaultItems = [item1, item2, item3];
+const defaultItems = [item1, item2];
 
 //const items = ["Buy Food", "Cook Food", "Eat Food"];
 const workItems = [];
@@ -118,7 +115,7 @@ app.post("/delete", function(req, res){
     })
     .catch(function(err){
       console.log(err);
-    })
+    });
   } else {
     List.findOneAndUpdate({name:listName}, {$pull:{items:{_id:checkedItemId}}})
     .then(function(){
